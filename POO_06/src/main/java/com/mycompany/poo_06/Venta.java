@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.poo_06;
+package com.mycompany.mavenproject1;
 
-import com.mycompany.poo_06.Producto;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import java.util.List;
  * @author CS-08
  */
 public class Venta {
+
     private int idVenta;
     private Date fechaVenta;
     private List<Producto> productos;
