@@ -17,7 +17,7 @@ import java.util.Scanner;
  * @author CS-08
  */
 public class main {
-    public static void main(String[] args) throws ParseException {       
+    public static void main(String[] args){       
         Producto[] producto = cargarProductos();
         ArrayList<Venta> venta = cargarVenta(producto);
         actividades(venta);
@@ -49,7 +49,7 @@ public class main {
         return productos;
     }
 
-    private static ArrayList<Venta> cargarVenta(Producto[] producto) throws ParseException {
+    private static ArrayList<Venta> cargarVenta(Producto[] producto){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el número de ventas:");
         int numVentas = scanner.nextInt();
@@ -91,7 +91,7 @@ public class main {
         }
     }
 
-    private static void actividades(ArrayList<Venta> ventas) throws ParseException {
+    private static void actividades(ArrayList<Venta> ventas){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Seleccione una actividad:");
