@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.poo_06;
+package com.mycompany.mavenproject1;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -18,13 +19,12 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) throws ParseException {       
         Producto[] producto = cargarProductos();
-        Venta[] venta = cargarVenta(producto);
+        ArrayList<Venta> venta = cargarVenta(producto);
         actividades(venta);
     }
     
     public static Producto[] cargarProductos() {
-        Producto[] productos = new Producto[20];
-        
+        Producto[] productos = new Producto[20];      
         productos[0] = new Producto("Leche", 2.0, false, false);
         productos[1] = new Producto("Pan", 1.5, false, false);
         productos[2] = new Producto("Arroz", 3.0, false, false);
@@ -49,11 +49,11 @@ public class main {
         return productos;
     }
 
-    private static Venta[] cargarVenta(Producto[] producto) throws ParseException {
+    private static ArrayList<Venta> cargarVenta(Producto[] producto) throws ParseException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el número de ventas:");
         int numVentas = scanner.nextInt();
-        Venta[] venta = new Venta[numVentas];
+        ArrayList<Venta> venta = new ArrayList<>();
         for (int i = 0; i < numVentas; i++) {
             System.out.println("Cuantos productos va a agregar a la venta");
             int num = scanner.nextInt();
@@ -72,7 +72,7 @@ public class main {
             String fechaStr = scanner.next();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date fecha = dateFormat.parse(fechaStr);
-            venta[i] = new Venta(i, fecha, productos);
+            venta.add(i, new Venta(i, fecha, productos));
         }
         return venta;
     }
@@ -91,13 +91,13 @@ public class main {
         }
     }
 
-    private static void actividades(Venta[] ventas) {
+    private static void actividades(ArrayList<Venta> ventas) throws ParseException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Seleccione una actividad:");
         System.out.println("1. Calcular ventas");
         System.out.println("2. Cantidad de productos de primera necesidad");
-        System.out.println("3. Cantidad de productos pre-cuidados");
+        System.out.println("3. Cantidad de productos precios cuidados");
         System.out.println("4. Total de descuentos");
         System.out.print("Ingrese el número de la actividad que desea realizar: ");
         int opcion = scanner.nextInt();
@@ -116,24 +116,23 @@ public class main {
             System.out.println("La cantidad de productos de primera necesidad es: " + totalProductosNecesidad);
             
         } else if (opcion == 3) {
-            System.out.println("Ingrese la fecha para obtener la cantidad de productos pre-cuidados (dd/MM/yyyy):");
+            System.out.println("Ingrese la fecha para obtener la cantidad de productos precios cuidados (dd/MM/yyyy):");
             String fechaStr = scanner.next();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date fecha = dateFormat.parse(fechaStr);
-            int totalProductosCuidados = Venta.CantProdPreCuidados(venta, fecha);
-            System.out.println("La cantidad de productos pre-cuidados en la fecha " + fechaStr + " es: " + totalProductosCuidados);
+            int totalProductosCuidados = Venta.CantProdPreCuidados(ventas, fecha);
+            System.out.println("La cantidad de productos preicios cuidados en la fecha " + fechaStr + " es: " + totalProductosCuidados);
             
         } else if (opcion == 4) {
             System.out.println("Ingrese la fecha para obtener el total de descuentos (dd/MM/yyyy):");
             String fechaStr = scanner.next();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date fecha = dateFormat.parse(fechaStr);
-            double totalDescuentos = Venta.TotalDescuentos(venta, fecha);
+            double totalDescuentos = Venta.TotalDescuentos(ventas, fecha);
             System.out.println("El total de descuentos en la fecha " + fechaStr + " es: " + totalDescuentos);
             
         } else {
             System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
         }
     }
-
 }
