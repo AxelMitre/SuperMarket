@@ -1,53 +1,60 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.mycompany.mavenproject1;
+package com.mycompany.poo_06;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author CS-08
- */
 public class Producto {
+    private int id;
+    private String nombre;
+    private double precio;
+    private boolean cuidados;
+    private boolean necesidades;
 
-    private ArrayList<String> nombres;
-    private ArrayList<Double> precios;
-    private ArrayList<Boolean> cuidados;
-    private ArrayList<Boolean> necesidads;
-
-    public Producto() {
-        nombres = new ArrayList<>();
-        precios = new ArrayList<>();
-        cuidados = new ArrayList<>();
-        necesidads = new ArrayList<>();
+    public Producto(int id, String nombre, double precio, boolean cuidados, boolean necesidades) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cuidados = cuidados;
+        this.necesidades = necesidades;
     }
 
-    public Producto(String nombre, double precio, boolean cuidado, boolean necesidad) {
-        nombres.add(nombre);
-        precios.add(precio);
-        cuidados.add(cuidado);
-        necesidads.add(necesidad);
+    // Getters y setters
+    public int getId(){
+        return id;
     }
-
     
-    public String getNombre(int indice) {
-        return nombres.get(indice);
+    public void setId(int id){
+        this.id = id;
+    }
+    
+    public String getNombre() {
+        return nombre;
     }
 
-    public double getPrecio(int indice) {
-        return precios.get(indice);
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public boolean getCuidado(int indice) {
-        return cuidados.get(indice);
+    public double getPrecio() {
+        return precio;
     }
 
-    public boolean getNecesidad(int indice) {
-        return necesidads.get(indice);
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
+    public boolean getCuidado() {
+        return cuidados;
+    }
+
+    public void setCuidado(boolean cuidados) {
+        this.cuidados = cuidados;
+    }
+
+    public boolean getNecesidad() {
+        return necesidades;
+    }
+
+    public void setNecesidad(boolean necesidades) {
+        this.necesidades = necesidades;
+    }
 }
-
