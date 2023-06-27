@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.mycompany.mavenproject1;
+package com.mycompany.poo_06;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,39 +12,40 @@ import java.util.Scanner;
  * @author CS-08
  */
 public class main {
-    public static void main(String[] args) throws ParseException {       
-        Producto[] producto = cargarProductos();
-        ArrayList<Venta> venta = cargarVenta(producto);
+    public static void main(String[] args){      
+        ArrayList<Venta> venta = cargarVenta();
         actividades(venta);
     }
     
-    public static Producto[] cargarProductos() {
-        Producto[] productos = new Producto[20];      
-        productos[0] = new Producto("Leche", 2.0, false, false);
-        productos[1] = new Producto("Pan", 1.5, false, false);
-        productos[2] = new Producto("Arroz", 3.0, false, false);
-        productos[3] = new Producto("Azúcar", 2.5, false, false);
-        productos[4] = new Producto("Aceite", 4.0, false, false);
-        productos[5] = new Producto("Huevos", 2.5, true, false);
-        productos[6] = new Producto("Queso", 3.5, true, false);
-        productos[7] = new Producto("Pescado", 5.0, true, false);
-        productos[8] = new Producto("Carne", 6.0, true, false);
-        productos[9] = new Producto("Pollo", 4.5, true, false);
-        productos[10] = new Producto("Papel higiénico", 1.0, false, true);
-        productos[11] = new Producto("Detergente", 2.0, false, true);
-        productos[12] = new Producto("Jabón de manos", 1.5, false, true);
-        productos[13] = new Producto("Cepillo de dientes", 2.5, false, true);
-        productos[14] = new Producto("Pasta dental", 3.0, false, true);
-        productos[15] = new Producto("Medicamentos", 10.0, true, true);
-        productos[16] = new Producto("Vacunas", 15.0, true, true);
-        productos[17] = new Producto("Antiséptico", 5.0, true, true);
-        productos[18] = new Producto("Vendas", 3.0, true, true);
-        productos[19] = new Producto("Termómetro", 8.0, true, true);
+    private static ArrayList<Producto> cargarProductos(ArrayList<Producto> producto) {
+        producto.add(new Producto(1,"Pan", 1.5, false, false));
+        producto.add(new Producto(2,"Pan", 1.5, false, false));
+        producto.add(new Producto(3,"Arroz", 3.0, false, false));
+        producto.add(new Producto(4,"Azúcar", 2.5, false, false));
+        producto.add(new Producto(5,"Aceite", 4.0, false, false));
+        producto.add(new Producto(6,"Huevos", 2.5, true, false));
+        producto.add(new Producto(7,"Queso", 3.5, true, false));
+        producto.add(new Producto(8,"Pescado", 5.0, true, false));
+        producto.add(new Producto(9,"Carne", 6.0, true, false));
+        producto.add(new Producto(10,"Pollo", 4.5, true, false));
+        producto.add(new Producto(11,"Papel higiénico", 1.0, false, true));
+        producto.add(new Producto(12,"Detergente", 2.0, false, true));
+        producto.add(new Producto(13,"Jabón de manos", 1.5, false, true));
+        producto.add(new Producto(14,"Cepillo de dientes", 2.5, false, true));
+        producto.add(new Producto(15,"Pasta dental", 3.0, false, true));
+        producto.add(new Producto(16,"Medicamentos", 10.0, true, true));
+        producto.add(new Producto(17,"Vacunas", 15.0, true, true));
+        producto.add(new Producto(18,"Antiséptico", 5.0, true, true));
+        producto.add(new Producto(19,"Vendas", 3.0, true, true));
+        producto.add(new Producto(20,"Termómetro", 8.0, true, true));
 
-        return productos;
+        return producto;
     }
 
-    private static ArrayList<Venta> cargarVenta(Producto[] producto) throws ParseException {
+
+
+    private static ArrayList<Venta> cargarVenta(){
+        ArrayList<Producto> productos = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el número de ventas:");
         int numVentas = scanner.nextInt();
@@ -57,41 +53,53 @@ public class main {
         for (int i = 0; i < numVentas; i++) {
             System.out.println("Cuantos productos va a agregar a la venta");
             int num = scanner.nextInt();
-            ArrayList<Producto> productos = new ArrayList<>();
+            ArrayList<Producto> producto = new ArrayList<>();
+            cargarProductos(producto);
+            Productos(producto);
+            
             for (int j = 0; j < num; j++){
-                Productos(producto);
                 System.out.print("Ingrese el índice del producto que desea seleccionar: ");
+                String nom = null;
+                double precio = 0.0;
+                boolean necesidad = false;
+                boolean cuidado = false;
                 int ind = scanner.nextInt();
-                if (ind >= 0 && ind < producto.length) {
-
-                    Producto productoSeleccionado = producto[ind];
-                    productos.set(j, productoSeleccionado);
-                }          
+                if (ind >= 0 && ind < productos.size()) {
+                    Producto productoSeleccionado = productos.get(ind);
+                    System.out.println("Producto seleccionado:");
+                    System.out.println("Nombre: " + productoSeleccionado.getNombre());
+                    nom = productoSeleccionado.getNombre();
+                    System.out.println("Precio: " + productoSeleccionado.getPrecio());
+                    precio = productoSeleccionado.getPrecio();
+                    System.out.println("Es de primera necesidad: " + productoSeleccionado.getNecesidad());
+                    necesidad = productoSeleccionado.getNecesidad();
+                    System.out.println("Es de precio cuidado: " + productoSeleccionado.getCuidado());
+                    cuidado = productoSeleccionado.getCuidado();
+                }
+                productos.add(new Producto(j,nom,precio,necesidad,cuidado));
             }
             System.out.println("En que fecha se realizo la venta:(dd/MM/yyyy)");
-            String fechaStr = scanner.next();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha = dateFormat.parse(fechaStr);
+            String fecha = scanner.next();
             venta.add(i, new Venta(i, fecha, productos));
+            System.out.println("Cantidad de ventas: " + venta.size());
         }
         return venta;
     }
     
-    public static void Productos(Producto[] productos) {
+    public static void Productos(ArrayList<Producto> productos) {
         System.out.println("Productos cargados en el supermercado:");
         int i =0;
         for (Producto producto : productos) {
-            i++;
-            System.out.println("id de prducto: "+i );
-            System.out.println("Nombre: " + producto.getNombre(i));
-            System.out.println("Precio: " + producto.getPrecio(i));
-            System.out.println(" precio cuidado: " + producto.getCuidado(i));
-            System.out.println(" primera necesidad: " + producto.getNecesidad(i));
+            System.out.println("id de prducto: "+producto.getId());
+            System.out.println("Nombre: " + producto.getNombre());
+            System.out.println("Precio: " + producto.getPrecio());
+            System.out.println(" precio cuidado: " + producto.getCuidado());
+            System.out.println(" primera necesidad: " + producto.getNecesidad());
             System.out.println("+------------------------------------+");
         }
     }
 
-    private static void actividades(ArrayList<Venta> ventas) throws ParseException {
+    private static void actividades(ArrayList<Venta> ventas){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Seleccione una actividad:");
@@ -112,26 +120,22 @@ public class main {
             int totalProductosNecesidad = 0;
             for (Venta venta : ventas) {
                 totalProductosNecesidad += venta.CantProdNecesidad();
+                System.out.println("La cantidad de productos de primera necesidad es: " + totalProductosNecesidad);
             }
-            System.out.println("La cantidad de productos de primera necesidad es: " + totalProductosNecesidad);
             
         } else if (opcion == 3) {
             System.out.println("Ingrese la fecha para obtener la cantidad de productos precios cuidados (dd/MM/yyyy):");
-            String fechaStr = scanner.next();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha = dateFormat.parse(fechaStr);
+            String fecha = scanner.next();
             int totalProductosCuidados = Venta.CantProdPreCuidados(ventas, fecha);
-            System.out.println("La cantidad de productos preicios cuidados en la fecha " + fechaStr + " es: " + totalProductosCuidados);
+            System.out.println("La cantidad de productos preicios cuidados en la fecha " + fecha + " es: " + totalProductosCuidados);
             
         } else if (opcion == 4) {
             System.out.println("Ingrese la fecha para obtener el total de descuentos (dd/MM/yyyy):");
-            String fechaStr = scanner.next();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha = dateFormat.parse(fechaStr);
+            String fecha = scanner.next();
             double totalDescuentos = Venta.TotalDescuentos(ventas, fecha);
-            System.out.println("El total de descuentos en la fecha " + fechaStr + " es: " + totalDescuentos);
+            System.out.println("El total de descuentos en la fecha " + fecha + " es: " + totalDescuentos);
             
-        } else {
+        } else{
             System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
         }
     }
