@@ -3,22 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mavenproject1;
+package com.mycompany.poo_06;
 
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author CS-08
- */
 public class Venta {
-
     private int idVenta;
-    private Date fechaVenta;
+    private String fechaVenta;
     private List<Producto> productos;
 
-    public Venta(int idVenta, Date fechaVenta, List<Producto> productos) {
+    public Venta(int idVenta, String fechaVenta, List<Producto> productos) {
         this.idVenta = idVenta;
         this.fechaVenta = fechaVenta;
         this.productos = productos;
@@ -28,41 +23,40 @@ public class Venta {
         return idVenta;
     }
 
-    public Date getFechaVenta() {
+    public String getFechaVenta() {
         return fechaVenta;
     }
 
     public List<Producto> getProductos() {
         return productos;
-    }   
+    }
+    
     public double calcularVentas() {
-    double precioVenta = 0.0;
-        for (int i = 0; i < productos.size(); i++) {
-            Producto producto = productos.get(i);
-            precioVenta += producto.getPrecio(i);
+        double precioVenta = 0.0;
+        for (Producto producto : productos) {
+            precioVenta += producto.getPrecio();
         }
         return precioVenta;
     }
+
     
     public int CantProdNecesidad() {
         int cantidad = 0;
-        for (int i = 0; i < productos.size(); i++) {
-            Producto producto = productos.get(i);
-            if (producto.getNecesidad(i)) {
+        for (Producto producto : productos) {
+            if (producto.getNecesidad()) {
                 cantidad++;
             }
         }
         return cantidad;
     }
 
-    
-    public static int CantProdPreCuidados(List<Venta> ventas, Date fecha) {
+    public static int CantProdPreCuidados(List<Venta> ventas, String fecha) {
         int cantidad = 0;
         for (Venta venta : ventas) {
             if (venta.getFechaVenta().equals(fecha)) {
                 List<Producto> productos = venta.getProductos();
                 for (Producto producto : productos) {
-                    if (producto.getCuidado(0)) { 
+                    if (producto.getCuidado()) {
                         cantidad++;
                     }
                 }
@@ -71,16 +65,14 @@ public class Venta {
         return cantidad;
     }
 
-
-    
-    public static double TotalDescuentos(List<Venta> ventas, Date dia) {
+    public static double TotalDescuentos(List<Venta> ventas, String dia) {
         double total = 0.0;
         for (Venta venta : ventas) {
             if (venta.getFechaVenta().equals(dia)) {
                 List<Producto> productos = venta.getProductos();
                 for (Producto producto : productos) {
-                    if (producto.getNecesidad(0)) { // Suponiendo que deseas acceder al primer producto de la lista
-                        double descuento = producto.getPrecio(0) * 0.1; // Suponiendo que deseas acceder al precio del primer producto
+                    if (producto.getNecesidad()) {
+                        double descuento = producto.getPrecio() * 0.1;
                         total += descuento;
                     }
                 }
