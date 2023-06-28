@@ -12,11 +12,16 @@ import java.util.Scanner;
  * @author CS-08
  */
 public class main {
-    public static void main(String[] args){    
+    public static void main(String[] args){ 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Cual es el nombre del super mercado:");
+        String nombre = scanner.next();
         ArrayList<Producto> producto = new ArrayList<>();
         ArrayList<PrimeraNecesidad> primeraNecesidad = new ArrayList<>();
         cargarProductos(producto,primeraNecesidad);
         ArrayList<Venta> venta = cargarVenta(producto,primeraNecesidad);
+        SuperMercado[] superMercado = new SuperMercado(nombre, ventas);
+        
         actividades(venta);
     }
     
