@@ -17,7 +17,6 @@ public class Producto {
         this.necesidades = necesidades;
     }
 
-    // Getters y setters
     public int getId(){
         return id;
     }
