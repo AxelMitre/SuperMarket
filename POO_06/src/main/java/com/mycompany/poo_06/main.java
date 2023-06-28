@@ -12,12 +12,15 @@ import java.util.Scanner;
  * @author CS-08
  */
 public class main {
-    public static void main(String[] args){      
-        ArrayList<Venta> venta = cargarVenta();
+    public static void main(String[] args){    
+        ArrayList<Producto> producto = new ArrayList<>();
+        ArrayList<PrimeraNecesidad> primeraNecesidad = new ArrayList<>();
+        cargarProductos(producto,primeraNecesidad);
+        ArrayList<Venta> venta = cargarVenta(producto,primeraNecesidad);
         actividades(venta);
     }
     
-    private static ArrayList<Producto> cargarProductos(ArrayList<Producto> producto) {
+    private static ArrayList<Producto> cargarProductos(ArrayList<Producto> producto, ArrayList<PrimeraNecesidad> primeraNecesidad) {
         producto.add(new Producto(1,"Pan", 1.5, false, false));
         producto.add(new Producto(2,"Pan", 1.5, false, false));
         producto.add(new Producto(3,"Arroz", 3.0, false, false));
@@ -37,14 +40,25 @@ public class main {
         producto.add(new Producto(17,"Vacunas", 15.0, true, true));
         producto.add(new Producto(18,"Antiséptico", 5.0, true, true));
         producto.add(new Producto(19,"Vendas", 3.0, true, true));
-        producto.add(new Producto(20,"Termómetro", 8.0, true, true));
+        producto.add(new Producto(20,"Termómetro", 8.0, true, true));    
+        primeraNecesidad.add(new PrimeraNecesidad(1,"Papel higiénico", 1.0, false, true));
+        primeraNecesidad.add(new PrimeraNecesidad(2,"Detergente", 2.0, false, true));
+        primeraNecesidad.add(new PrimeraNecesidad(3,"Jabón de manos", 1.5, false, true));
+        primeraNecesidad.add(new PrimeraNecesidad(4,"Cepillo de dientes", 2.5, false, true));
+        primeraNecesidad.add(new PrimeraNecesidad(5,"Pasta dental", 3.0, false, true));
+        primeraNecesidad.add(new PrimeraNecesidad(6,"Medicamentos", 10.0, true, true));
+        primeraNecesidad.add(new PrimeraNecesidad(7,"Vacunas", 15.0, true, true));
+        primeraNecesidad.add(new PrimeraNecesidad(8,"Antiséptico", 5.0, true, true));
+        primeraNecesidad.add(new PrimeraNecesidad(9,"Vendas", 3.0, true, true));
+        primeraNecesidad.add(new PrimeraNecesidad(10,"Termómetro", 8.0, true, true));
+
 
         return producto;
     }
 
 
 
-    private static ArrayList<Venta> cargarVenta(){
+    private static ArrayList<Venta> cargarVenta(ArrayList<Producto> producto, ArrayList<PrimeraNecesidad> primeraNecesidad){
         ArrayList<Producto> productos = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el número de ventas:");
@@ -53,8 +67,6 @@ public class main {
         for (int i = 0; i < numVentas; i++) {
             System.out.println("Cuantos productos va a agregar a la venta");
             int num = scanner.nextInt();
-            ArrayList<Producto> producto = new ArrayList<>();
-            cargarProductos(producto);
             Productos(producto);
             
             for (int j = 0; j < num; j++){
