@@ -20,7 +20,7 @@ public class main {
         ArrayList<PrimeraNecesidad> primeraNecesidad = new ArrayList<>();
         cargarProductos(producto,primeraNecesidad);
         ArrayList<Venta> venta = cargarVenta(producto,primeraNecesidad);
-        SuperMercado[] superMercado = new SuperMercado(nombre, ventas);
+        SuperMercado[] superMercado = new SuperMercado(nombre, venta);
         
         actividades(venta);
     }
