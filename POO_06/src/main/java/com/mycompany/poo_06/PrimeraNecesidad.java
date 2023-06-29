@@ -5,6 +5,7 @@
  */
 package com.mycompany.poo_06;
 
+
 /**
  *
  * @author CS08
@@ -12,6 +13,5 @@ package com.mycompany.poo_06;
 public class PrimeraNecesidad extends Producto{
     public PrimeraNecesidad(int id, String nombre, double precio, boolean cuidados, boolean necesidades) {
         super(id, nombre, precio-(precio*0.1), cuidados, necesidades);
-    }
-    
+    }  
 }
