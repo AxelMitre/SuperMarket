@@ -34,10 +34,11 @@ public class Venta {
     public double calcularVentas() {
         double precioVenta = 0.0;
         for (Producto producto : productos) {
-            precioVenta += producto.getPrecio();
+            precioVenta+=producto.getPrecio();
         }
         return precioVenta;
     }
+    
 
     
     public int CantProdNecesidad() {
@@ -50,7 +51,7 @@ public class Venta {
         return cantidad;
     }
 
-    public static int CantProdPreCuidados(List<Venta> ventas, String fecha) {
+    public static int CantProdPreCuidados(Venta[] ventas, String fecha) {
         int cantidad = 0;
         for (Venta venta : ventas) {
             if (venta.getFechaVenta().equals(fecha)) {
@@ -65,7 +66,7 @@ public class Venta {
         return cantidad;
     }
 
-    public static double TotalDescuentos(List<Venta> ventas, String dia) {
+    public static double TotalDescuentos(Venta[] ventas, String dia) {
         double total = 0.0;
         for (Venta venta : ventas) {
             if (venta.getFechaVenta().equals(dia)) {
