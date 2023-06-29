@@ -4,56 +4,37 @@ import java.util.ArrayList;
 
 public class Producto {
     private int id;
-    private String nombre;
-    private double precio;
-    private boolean cuidados;
-    private boolean necesidades;
-
-    public Producto(int id, String nombre, double precio, boolean cuidados, boolean necesidades) {
+    private String nombres;
+    private Double precios;
+    private Boolean cuidados;
+    private Boolean necesidades;
+    
+    
+    public Producto(int id, String nombre, double precio, boolean cuidado, boolean necesidade) {
         this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.cuidados = cuidados;
-        this.necesidades = necesidades;
+        this.nombres = nombre;
+        this.precios = precio;
+        this.cuidados = cuidado;
+        this.necesidades = necesidade;
     }
 
     public int getId(){
         return id;
     }
     
-    public void setId(int id){
-        this.id = id;
-    }
-    
     public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+        return nombres;
     }
 
     public double getPrecio() {
-        return precio;
+        return precios;
     }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public boolean getCuidado() {
+    
+    public Boolean getCuidado() {
         return cuidados;
     }
 
-    public void setCuidado(boolean cuidados) {
-        this.cuidados = cuidados;
-    }
-
-    public boolean getNecesidad() {
+    public Boolean getNecesidad() {
         return necesidades;
-    }
-
-    public void setNecesidad(boolean necesidades) {
-        this.necesidades = necesidades;
     }
 }
